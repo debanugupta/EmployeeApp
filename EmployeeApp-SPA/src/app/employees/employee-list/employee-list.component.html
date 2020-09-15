@@ -1,3 +1,48 @@
-<p>
-  employee-list works!
-</p>
+<!-- <div class="row">
+  <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+    <app-member-card [user]="user"></app-member-card>
+  </div>
+</div> -->
+
+<table class="table table-hover table-bordered table-sm ">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Email Id</th>
+      <th scope="col">Age</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Date Of Birth</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.gender}}</td>
+      <td>{{employee.emailId}}</td>
+      <td>{{employee.age}}</td>
+      <td>{{employee.designationName}}</td>
+      <td>{{employee.dateOfBirth | date : 'mediumDate'}}</td>
+      <td>
+        <i class="far fa-trash-alt fa-lg text-danger"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div class="d-flex justify-content-center">
+  <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+      previousText="&lsaquo;" 
+      nextText="&rsaquo;" 
+      firstText="&laquo;" 
+      lastText="&raquo;">
+  </pagination>
+</div> -->
