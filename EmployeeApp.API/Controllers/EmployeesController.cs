@@ -52,6 +52,11 @@ namespace EmployeeApp.API.Controllers
         {
             var employee = await _repo.GetEmployee(id);
 
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
             var employeeToReturn = _mapper.Map<EmployeeForDetailedDto>(employee);
 
             return Ok(employeeToReturn);

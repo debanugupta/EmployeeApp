@@ -1,3 +1,45 @@
-<p>
-  employee-detail works!
-</p>
+<div class="container mt-4">
+  <div class="row">
+    <h1>{{employee.firstName}}'s Profile</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <strong>Name:</strong>
+            <p>{{employee.lastName}}, {{employee.firstName}}</p>
+          </div>
+          <div>
+            <strong>Age:</strong>
+            <p>{{employee.age}}</p>
+          </div>
+          <div>
+            <strong>Date of birth:</strong>
+            <p>{{employee.dateOfBirth | date : 'mediumDate'}}</p>
+          </div>
+          <div>
+            <strong>Gender:</strong>
+            <p>{{employee.gender}}</p>
+          </div>
+          <div>
+            <strong>Email Id:</strong>
+            <p>{{employee.emailId}}</p>
+          </div>
+          <div>
+            <strong>Designation:</strong>
+            <p>{{employee.designationName}}</p>
+          </div>
+          <div>
+            <strong>Employee Since:</strong>
+            <p>{{employee.created | date : 'mediumDate'}}</p>
+          </div>
+          <!-- <div>
+            <li class="list-inline-item"><button class="btn btn-primary"
+              [routerLink]="['/employees/', employee.id]"><i class="fa fa-user"></i></button></li>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="col-sm-8">
+
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
+          <h4>First Name</h4>
+          <input name="firstName"  class="form-control" 
+            [(ngModel)]="employee.firstName" />
+          <h4>Last Name</h4>
+          <input name="lastName" class="form-control" 
+            [(ngModel)]="employee.lastName" />
+            <h4>Email</h4>
+            <input class="form-control" name="email" 
+              [(ngModel)]="employee.emailId" />
+            <h4>Gender</h4>
+            <label class="radio-inline">
+              <input class="mr-3" class="form-control" type="radio" value="M" name="gender" [(ngModel)]="employee.gender">Male
+            </label>
+            <label class="radio-inline ml-3">
+              <input class="mr-3" class="form-control" type="radio" value="F" name="gender" [(ngModel)]="employee.gender">Female
+            </label>
+            <!-- <label for="gender">Show: </label>
+            <select class="form-control ml-1" style="width: 130px" id="gender" 
+              [(ngModel)]="userParams.gender" name="designation">
+              <option *ngFor="let gender of genderList" [value]="gender.value">
+                {{ gender.display }}
+              </option>
+            </select> -->
+        </form>
+
+</div>

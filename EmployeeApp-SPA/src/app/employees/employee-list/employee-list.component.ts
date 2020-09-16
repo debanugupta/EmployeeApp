@@ -4,6 +4,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -20,25 +21,25 @@ export class EmployeeListComponent implements OnInit {
 
 
   constructor(private employeeService: EmployeeService, private alertify: AlertifyService,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
-      // this.route.data.subscribe(data => {
-      //   this.employees = data['employees'].result;
-      //   this.pagination = data['employees'].pagination;
-      // });
+      this.route.data.subscribe(data => {
+        this.employees = data['employees'].result;
+        this.pagination = data['employees'].pagination;
+      });
       // this.employeeParams.gender = this.empl === 'female' ? 'male' : 'female';
       this.employeeParams.minAge = 18;
       this.employeeParams.maxAge = 99;
       this.employeeParams.orderBy = 'lastActive';
+    }
 
-      this.loadEmployees();
-
+    populateForm(employee: Employee) {
+      this.router.navigate(['/employees/' + employee.id]);
     }
 
     pageChanged(event: any): void {
-      // this.pagination.currentPage = event.page;
+      this.pagination.currentPage = event.page;
       this.loadEmployees();
     }
 
@@ -52,7 +53,7 @@ export class EmployeeListComponent implements OnInit {
     loadEmployees() {
       this.employeeService
       .getEmployees(
-        //  this.pagination.currentPage, this.pagination.itemsPerPage, this.employeeParams
+        this.pagination.currentPage, this.pagination.itemsPerPage, this.employeeParams
         )
       .subscribe(
         (res: PaginatedResult<Employee[]>) => {

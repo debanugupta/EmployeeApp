@@ -14,26 +14,26 @@
       <th scope="col">Age</th>
       <th scope="col">Designation</th>
       <th scope="col">Date Of Birth</th>
-      <th></th>
+      <!-- <th></th> -->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{employee.firstName}}</td>
-      <td>{{employee.lastName}}</td>
-      <td>{{employee.gender}}</td>
-      <td>{{employee.emailId}}</td>
-      <td>{{employee.age}}</td>
-      <td>{{employee.designationName}}</td>
-      <td>{{employee.dateOfBirth | date : 'mediumDate'}}</td>
-      <td>
+      <td (click)="populateForm(employee)">{{employee.firstName}}</td>
+      <td (click)="populateForm(employee)">{{employee.lastName}}</td>
+      <td (click)="populateForm(employee)">{{employee.gender}}</td>
+      <td (click)="populateForm(employee)">{{employee.emailId}}</td>
+      <td (click)="populateForm(employee)">{{employee.age}}</td>
+      <td (click)="populateForm(employee)">{{employee.designationName}}</td>
+      <td (click)="populateForm(employee)">{{employee.dateOfBirth | date : 'mediumDate'}}</td>
+      <!-- <td>
         <i class="far fa-trash-alt fa-lg text-danger"></i>
-      </td>
+      </td> -->
     </tr>
   </tbody>
 </table>
 
-<!-- <div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center">
   <pagination
       [boundaryLinks]="true"
       [totalItems]="pagination.totalItems"
@@ -45,4 +45,4 @@
       firstText="&laquo;" 
       lastText="&raquo;">
   </pagination>
-</div> -->
+</div>

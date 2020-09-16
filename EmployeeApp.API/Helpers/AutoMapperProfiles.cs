@@ -18,6 +18,8 @@ namespace EmployeeApp.API.Helpers
                 .ForMember(dest => dest.DesignationName, opt =>
                     opt.MapFrom(src => src.Designation.DesignationName));
             CreateMap<Employee, EmployeeForDetailedDto>()
+                .ForMember(dest => dest.DesignationName, opt =>
+                    opt.MapFrom(src => src.Designation.DesignationName))
                 .ForMember(dest => dest.Age, opt =>
                     opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<EmployeeForUpdateDto, Employee>()
