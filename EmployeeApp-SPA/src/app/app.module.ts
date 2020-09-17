@@ -6,6 +6,7 @@ import { EmployeeDetailComponent } from './employees/employee-detail/employee-de
 import { EmployeeEditComponent } from './employees/employee-edit/employee-edit.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -37,7 +38,8 @@ import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     TabsModule.forRoot(),
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     EmployeeListResolver,

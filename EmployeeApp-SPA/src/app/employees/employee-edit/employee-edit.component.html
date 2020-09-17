@@ -17,13 +17,19 @@
             <label class="radio-inline ml-3">
               <input class="mr-3" class="form-control" type="radio" value="F" name="gender" [(ngModel)]="employee.gender">Female
             </label>
-            <!-- <label for="gender">Show: </label>
-            <select class="form-control ml-1" style="width: 130px" id="gender" 
-              [(ngModel)]="userParams.gender" name="designation">
-              <option *ngFor="let gender of genderList" [value]="gender.value">
-                {{ gender.display }}
+             <h4>Designation</h4>
+            <select class="form-control ml-1"  id="designation"
+              [(ngModel)]="employee.designationId" name="designation">
+              <option *ngFor="let designation of designations | async" [value]="designation.id">
+                {{ designation.designationName }}
               </option>
-            </select> -->
+            </select>
+            <!--<input  
+              placeholder="Date of Birth" 
+              [(ngModel)]="employee.dateOfBirth"
+              name="dateOfBirth"
+              type="text" bsDatepicker [bsConfig]="bsConfig"> -->
+            <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
         </form>
 
 </div>
