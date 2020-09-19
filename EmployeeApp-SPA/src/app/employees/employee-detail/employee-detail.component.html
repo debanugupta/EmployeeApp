@@ -1,6 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <h1>{{employee.firstName}}'s Profile</h1>
+    
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -33,6 +34,9 @@
           <div>
             <strong>Employee Since:</strong>
             <p>{{employee.created | date : 'mediumDate'}}</p>
+          </div>
+          <div>
+            <a class="btn btn-outline-dark ml-1" routerLink="/employees"><i class="fa fa-table"></i> View Employees</a>
           </div>
           <!-- <div>
             <li class="list-inline-item"><button class="btn btn-primary"

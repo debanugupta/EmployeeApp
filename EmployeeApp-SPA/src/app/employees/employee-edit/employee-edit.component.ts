@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/_models/employee';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgForm } from '@angular/forms';
@@ -27,7 +27,9 @@ export class EmployeeEditComponent implements OnInit {
       $event.returnValue = true;
     }
   }
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+  constructor(private route: ActivatedRoute,
+    private alertify: AlertifyService,
+    private router: Router,
     private employeeService: EmployeeService,
     private designationService: DesignationService
     // , private authService: AuthService
@@ -36,7 +38,7 @@ export class EmployeeEditComponent implements OnInit {
     ngOnInit() {
       this.bsConfig = {
         containerClass: 'theme-red',
-        dateInputFormat: 'DD/MM/YYYY'
+        dateInputFormat: 'MM/DD/YYYY'
       },
       this.route.data.subscribe(data => {
         this.employee = data['employee'];
@@ -52,13 +54,20 @@ export class EmployeeEditComponent implements OnInit {
       this.designations = this.designationService.getDesignations();
       
     }
+
+    cancel(){
+      this.router.navigate(['/employees']);
+    }
   
     updateEmployee() {
       this.employeeService.updateEmployee(this.employee.id, this.employee).subscribe(next => {
         this.alertify.success('Employee updated successfully');
         this.editForm.reset(this.employee);
+        this.router.navigate(['/employees']);
       }, error => {
+        console.log(error);
         this.alertify.error(error);
+
       });
     }
 

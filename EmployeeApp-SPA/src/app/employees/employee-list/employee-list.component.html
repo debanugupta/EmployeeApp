@@ -14,7 +14,9 @@
       <th scope="col">Age</th>
       <th scope="col">Designation</th>
       <th scope="col">Date Of Birth</th>
-      <!-- <th></th> -->
+      <th>
+        
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +28,9 @@
       <td (click)="populateForm(employee)">{{employee.age}}</td>
       <td (click)="populateForm(employee)">{{employee.designationName}}</td>
       <td (click)="populateForm(employee)">{{employee.dateOfBirth | date : 'mediumDate'}}</td>
+      <td>
+        <a class="btn btn-sm btn-info text-white" (click)="openForEdit(employee)"><i class="fa fa-pencil"></i></a>
+      </td>
       <!-- <td>
         <i class="far fa-trash-alt fa-lg text-danger"></i>
       </td> -->

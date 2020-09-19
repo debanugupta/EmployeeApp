@@ -38,6 +38,10 @@ export class EmployeeListComponent implements OnInit {
       this.router.navigate(['/employees/' + employee.id]);
     }
 
+    openForEdit(employee: Employee ) {
+      this.router.navigate(['/employees/edit/' + employee.id]);
+    }
+
     pageChanged(event: any): void {
       this.pagination.currentPage = event.page;
       this.loadEmployees();
