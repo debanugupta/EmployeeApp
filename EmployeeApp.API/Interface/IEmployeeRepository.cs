@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using EmployeeApp.API.Models;
 using EmployeeApp.API.Helpers;
 
-namespace EmployeeApp.API.Data
+namespace EmployeeApp.API.Interface
 {
     public interface IEmployeeRepository
     {

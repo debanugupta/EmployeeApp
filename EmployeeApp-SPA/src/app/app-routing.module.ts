@@ -22,7 +22,7 @@ export const appRoutes: Routes = [
             { path: 'employees/:id', component: EmployeeDetailComponent,
                 resolve: {employee: EmployeeDetailResolver}},
             { path: 'employees/edit/:id', component: EmployeeEditComponent,
-                resolve: {employee: EmployeeEditResolver} },
+                resolve: {employee: EmployeeEditResolver}, canDeactivate: [PreventUnsavedChanges] },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full'}

@@ -15,19 +15,23 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { appRoutes } from './routes';
+import { appRoutes } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { EmployeeListResolver } from './_resolvers/employee-list.resolver';
 import { EmployeeDetailResolver } from './_resolvers/employee-detail.resolver';
 import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
+import { NavComponent } from './nav/nav.component';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     EmployeeListComponent,
     EmployeeDetailComponent,
     EmployeeEditComponent,
-      HomeComponent
+      HomeComponent,
+      NavComponent
    ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
   providers: [
     EmployeeListResolver,
     EmployeeDetailResolver,
-    EmployeeEditResolver
+    EmployeeEditResolver,
+    PreventUnsavedChanges
   ],
   bootstrap: [AppComponent]
 })

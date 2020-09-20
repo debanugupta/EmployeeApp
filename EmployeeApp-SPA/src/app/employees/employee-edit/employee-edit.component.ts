@@ -8,6 +8,7 @@ import { DesignationService } from 'src/app/_services/designation.service';
 import { Observable } from 'rxjs';
 import { Designation } from 'src/app/_models/designation';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 // import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -37,13 +38,14 @@ export class EmployeeEditComponent implements OnInit {
 
     ngOnInit() {
       this.bsConfig = {
-        containerClass: 'theme-red',
-        dateInputFormat: 'MM/DD/YYYY'
+        dateInputFormat: 'YYYY-MM-DD',
+        containerClass: 'theme-red'
       },
       this.route.data.subscribe(data => {
         this.employee = data['employee'];
-        
       });
+
+
       this.fillDesignations();
       // this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
     }

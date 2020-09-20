@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeApp.API.Helpers;
+using EmployeeApp.API.Interface;
 
 namespace EmployeeApp.API.Data
 {

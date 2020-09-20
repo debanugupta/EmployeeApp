@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmployeeApp.API.Data;
 using Microsoft.Extensions.DependencyInjection;
+using EmployeeApp.API.Interface;
 
 namespace EmployeeApp.API.Helpers
 {

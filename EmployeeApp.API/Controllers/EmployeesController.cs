@@ -2,6 +2,7 @@
 using EmployeeApp.API.Data;
 using EmployeeApp.API.Dtos;
 using EmployeeApp.API.Helpers;
+using EmployeeApp.API.Interface;
 using EmployeeApp.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;

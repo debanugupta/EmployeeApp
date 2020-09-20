@@ -11,7 +11,7 @@ namespace EmployeeApp.API.Dtos
         public string LastName { get; set; }
         public string EmailId { get; set; }
         public string Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         public string DesignationId { get; set; }
     }
 }
