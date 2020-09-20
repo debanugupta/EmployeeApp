@@ -1,0 +1,52 @@
+
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input  matInput  placeholder="First Name" class="form-control" [(ngModel)]="employee.firstName"  name="firstName"  required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input  matInput  placeholder="Last Name" class="form-control" [(ngModel)]="employee.lastName"  name="lastName"  required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+            <mat-label>Email Id</mat-label>
+            <input  matInput  placeholder="Email Id" class="form-control" [(ngModel)]="employee.emailId"  name="emailId"  required>
+        </mat-form-field>
+        <br/>
+        <mat-label>Gender</mat-label>
+        <mat-radio-group [(ngModel)]="employee.gender" class="form-control" name="gender" required >
+            <mat-radio-button class="form-control" name="gender" value="M" >Male</mat-radio-button>
+            <mat-radio-button class="form-control" name="gender" value="F" >Female</mat-radio-button>
+        </mat-radio-group>
+        <br/>
+        <br/>
+        <br/>
+        <mat-form-field>
+            <mat-label>Designation</mat-label>
+            <mat-select [(ngModel)]="employee.designationId" class="form-control" name="designation" form="editForm" required>
+                <mat-option value="0">-Select-</mat-option>
+                <mat-option *ngFor="let designation of designations | async" value="{{designation.id}}">
+                    {{designation.designationName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input  [(ngModel)]="employee.dateOfBirth" class="form-control" name="dateOfBirth" form="editForm"
+            matInput [matDatepicker]="dateOfBirth"  placeholder="Date of birth" required>
+            <mat-datepicker-toggle  matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirth></mat-datepicker>
+        </mat-form-field>
+        <br/>
+        <mat-card-actions>
+            <button [disabled]="!editForm.dirty" form="editForm" mat-raised-button  type="submit" color="primary">Save Changes</button>
+        </mat-card-actions>
+        &nbsp;
+        <mat-card-actions>
+            <button  mat-raised-button  type="button"  (click)="cancel()">Cancel</button>
+        </mat-card-actions>
+        
+    </form>

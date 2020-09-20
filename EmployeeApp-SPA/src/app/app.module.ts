@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeEditComponent } from './employees/employee-edit/employee-edit.component';
+import { EmployeeEditMComponent } from './employees/employee-edit-m/employee-edit-m.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +24,16 @@ import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
 import { NavComponent } from './nav/nav.component';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [		
@@ -30,8 +41,9 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
     EmployeeListComponent,
     EmployeeDetailComponent,
     EmployeeEditComponent,
-      HomeComponent,
-      NavComponent
+    HomeComponent,
+    NavComponent,
+    EmployeeEditMComponent
    ],
   imports: [
     BrowserModule,
@@ -44,6 +56,8 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BrowserAnimationsModule,
+    MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule,
+    MatCheckboxModule, MatDatepickerModule, MatRadioModule, MatSelectModule, MatNativeDateModule,
   ],
   providers: [
     EmployeeListResolver,

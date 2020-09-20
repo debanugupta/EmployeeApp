@@ -8,6 +8,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { EmployeeDetailResolver } from './_resolvers/employee-detail.resolver';
 import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { EmployeeEditMComponent } from './employees/employee-edit-m/employee-edit-m.component';
 
 export const appRoutes: Routes = [
 
