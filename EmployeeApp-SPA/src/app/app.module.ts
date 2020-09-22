@@ -63,7 +63,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     EmployeeListResolver,
     EmployeeDetailResolver,
     EmployeeEditResolver,
-    PreventUnsavedChanges
+    PreventUnsavedChanges,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

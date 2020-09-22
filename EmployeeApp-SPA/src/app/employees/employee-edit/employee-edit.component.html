@@ -1,41 +1,76 @@
-<div class="col-sm-8">
-
-        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
-          <h4>First Name</h4>
-          <input name="firstName"  class="form-control" 
-            [(ngModel)]="employee.firstName" />
-          <h4>Last Name</h4>
-          <input name="lastName" class="form-control" 
-            [(ngModel)]="employee.lastName" />
-            <h4>Email</h4>
-            <input class="form-control" name="email" 
-              [(ngModel)]="employee.emailId" />
-            <h4>Gender</h4>
-            <label class="radio-inline">
-              <input class="mr-3" class="form-control" type="radio" value="M" name="gender" [(ngModel)]="employee.gender">Male
-            </label>
-            <label class="radio-inline ml-3">
-              <input class="mr-3" class="form-control" type="radio" value="F" name="gender" [(ngModel)]="employee.gender">Female
-            </label>
-            
-            <h4>Designation</h4>
-            <select name="designation"  [(ngModel)]="employee.designationId" class="form-control">
-                <option value="0">-Select-</option>
-                <option *ngFor="let designation of designations | async" value="{{designation.id}}">{{designation.designationName}}</option>
-            </select>
-            
-            <h4>Date of birth</h4>
-             <input  
-              placeholder="Date of Birth" class="form-control"
-              [(ngModel)]="employee.dateOfBirth"
-              name="dateOfBirth"
-              type="text" bsDatepicker [bsConfig]="bsConfig"> 
-             
-
-            <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
-            <button class="btn btn-secondary btn-block" type="button" (click)="cancel()">Cancel</button>
-            
-          </form>
-          
-
+<div class="col-md-6">
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>First Name</h4>
+        <input name="firstName"  class="form-control" 
+        [(ngModel)]="employee.firstName" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Last Name</h4>
+        <input name="lastName" class="form-control" 
+          [(ngModel)]="employee.lastName" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Email</h4>
+        <input class="form-control" name="email" 
+          [(ngModel)]="employee.emailId" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Gender</h4>
+        <label class="radio-inline">
+          <input class="mr-3" class="form-control" type="radio" value="Male" name="gender" [(ngModel)]="employee.gender">Male
+        </label>
+        <label class="radio-inline ml-3">
+          <input class="mr-3" class="form-control" type="radio" value="Female" name="gender" [(ngModel)]="employee.gender">Female
+        </label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Designation</h4>
+        <select name="designation"  [(ngModel)]="employee.designationId" class="form-control">
+            <option value="0">-Select-</option>
+            <option *ngFor="let designation of designations | async" value="{{designation.id}}">{{designation.designationName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Date of birth</h4> 
+        <input  
+          placeholder="Date of Birth" class="form-control"
+          [(ngModel)]="employee.dateOfBirth"
+          name="dateOfBirth"
+          type="text" bsDatepicker [bsConfig]="bsConfig"> 
+          <!-- <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input  [(ngModel)]="employee.dateOfBirth" class="form-control" name="dateOfBirth" form="editForm"
+            matInput [matDatepicker]="dateOfBirth"  placeholder="Date of birth" required>
+            <mat-datepicker-toggle  matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirth></mat-datepicker>
+          </mat-form-field> -->
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h4>Is Active</h4>
+        <input  type="checkbox" class="form-control" name="isActive"  [(ngModel)]="employee.isActive">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+      <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+      </div>
+      <div class="form-group col-md-6">
+        <button class="btn btn-secondary btn-block" type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>

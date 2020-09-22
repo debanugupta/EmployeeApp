@@ -36,10 +36,6 @@ export class EmployeeEditMComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-      this.bsConfig = {
-        dateInputFormat: 'YYYY-MM-DD',
-        containerClass: 'theme-red'
-      },
       this.route.data.subscribe(data => {
         this.employee = data['employee'];
       });
@@ -50,10 +46,7 @@ export class EmployeeEditMComponent implements OnInit {
     }
 
     fillDesignations(){
-      // this.designationService.getDesignations()
-      // .subscribe(res => this.designationList = res as []);
-      this.designations = this.designationService.getDesignations();
-      
+      this.designations = this.designationService.getDesignations(); 
     }
 
     cancel(){

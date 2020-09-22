@@ -12,6 +12,7 @@ namespace EmployeeApp.API.Dtos
         public string EmailId { get; set; }
         public string Gender { get; set; }
         public string DateOfBirth { get; set; }
+        public bool IsActive { get; set; }
         public string DesignationId { get; set; }
     }
 }

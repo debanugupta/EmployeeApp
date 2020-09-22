@@ -22,7 +22,7 @@ export const appRoutes: Routes = [
                 resolve: {employees: EmployeeListResolver}},
             { path: 'employees/:id', component: EmployeeDetailComponent,
                 resolve: {employee: EmployeeDetailResolver}},
-            { path: 'employees/edit/:id', component: EmployeeEditComponent,
+            { path: 'employees/edit/:id', component: EmployeeEditMComponent,
                 resolve: {employee: EmployeeEditResolver}, canDeactivate: [PreventUnsavedChanges] },
         ]
     },

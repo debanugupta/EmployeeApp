@@ -20,6 +20,10 @@
             <p>{{employee.dateOfBirth | date : 'mediumDate'}}</p>
           </div>
           <div>
+            <strong>Is Active:</strong>
+            <p>{{employee.isActive?'Yes': 'No'}}</p>
+          </div>
+          <div>
             <strong>Gender:</strong>
             <p>{{employee.gender}}</p>
           </div>

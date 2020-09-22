@@ -8,6 +8,7 @@ export interface Employee {
     emailId: string;
     gender: string;
     dateOfBirth: Date;
+    isActive: boolean;
     designationId: number;
     designationName: string;
     created: Date;
