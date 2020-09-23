@@ -7,7 +7,7 @@ import { EmployeeService } from 'src/app/_services/employee.service';
 import { DesignationService } from 'src/app/_services/designation.service';
 import { Observable } from 'rxjs';
 import { Designation } from 'src/app/_models/designation';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 @Component({
   selector: 'app-employee-edit-m',
@@ -19,7 +19,6 @@ export class EmployeeEditMComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   employee: Employee;
   designations: Observable<Designation[]>;
-  bsConfig: Partial<BsDatepickerConfig>;
   
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {

@@ -5,6 +5,7 @@ import { EmployeeListComponent } from './employees/employee-list/employee-list.c
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeEditComponent } from './employees/employee-edit/employee-edit.component';
 import { EmployeeEditMComponent } from './employees/employee-edit-m/employee-edit-m.component';
+import { EmployeeEditRComponent } from './employees/employee-edit-r/employee-edit-r.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,12 +44,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     EmployeeEditComponent,
     HomeComponent,
     NavComponent,
-    EmployeeEditMComponent
+    EmployeeEditMComponent,
+    EmployeeEditRComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),

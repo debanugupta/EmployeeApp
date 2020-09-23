@@ -9,6 +9,7 @@ import { EmployeeDetailResolver } from './_resolvers/employee-detail.resolver';
 import { EmployeeEditResolver } from './_resolvers/employee-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { EmployeeEditMComponent } from './employees/employee-edit-m/employee-edit-m.component';
+import { EmployeeEditRComponent } from './employees/employee-edit-r/employee-edit-r.component';
 
 export const appRoutes: Routes = [
 
@@ -22,7 +23,7 @@ export const appRoutes: Routes = [
                 resolve: {employees: EmployeeListResolver}},
             { path: 'employees/:id', component: EmployeeDetailComponent,
                 resolve: {employee: EmployeeDetailResolver}},
-            { path: 'employees/edit/:id', component: EmployeeEditMComponent,
+            { path: 'employees/edit/:id', component: EmployeeEditComponent,
                 resolve: {employee: EmployeeEditResolver}, canDeactivate: [PreventUnsavedChanges] },
         ]
     },
