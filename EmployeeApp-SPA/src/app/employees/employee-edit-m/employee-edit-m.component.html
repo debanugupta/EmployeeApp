@@ -1,5 +1,5 @@
-<div class="col-md-6">
-    <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
+<div class="col-md-12">
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="save()">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <mat-form-field>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <!-- <mat-label>Gender</mat-label> -->
                 <mat-radio-group  [(ngModel)]="employee.gender" class="form-control" name="gender"  >
                     <mat-radio-button  value="Male" >Male</mat-radio-button>
@@ -39,7 +39,7 @@
                 <mat-form-field>
                     <mat-label>Designation</mat-label>
                     <mat-select [(ngModel)]="employee.designationId" class="form-control" name="designation" form="editForm" required>
-                        <mat-option value="0">-Select-</mat-option>
+                        <mat-option value="">--Select--</mat-option>
                         <mat-option *ngFor="let designation of designations | async" value="{{designation.id}}">
                             {{designation.designationName}}
                         </mat-option>
@@ -59,19 +59,22 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <mat-checkbox  class="form-control" name="isActive" [(ngModel)]="employee.isActive" required>Is active?</mat-checkbox>
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <mat-card-actions>
-                    <button [disabled]="!editForm.dirty" form="editForm" mat-raised-button  type="submit" color="primary">Save Changes</button>
+                    <button [disabled]="!editForm.dirty || !editForm.valid" form="editForm" mat-raised-button  color="primary" type="submit" color="primary">Save</button>
                 </mat-card-actions>
-            </div>
-            <div class="form-group col-md-4">
+                &nbsp;
                 <mat-card-actions>
-                    <button  mat-raised-button  type="button"  (click)="cancel()">Cancel</button>
+                    <button [hidden]="!employee.id" color="warn"  mat-raised-button  type="button"  (click)="deleteEmployee()">Delete</button>
+                </mat-card-actions>
+                &nbsp;
+                <mat-card-actions>
+                    <button  mat-raised-button   type="button"  (click)="cancel()">Cancel</button>
                 </mat-card-actions>
             </div>
         </div>

@@ -37,15 +37,21 @@ export class EmployeeEditComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+      let employeeID = this.route.snapshot.paramMap.get('id');
+      if (employeeID == null)
+      {
+        this.resetEmployee();
+      }
+      else
+      {
+        this.route.data.subscribe(data => {
+          this.employee = data['employee'];
+        });
+      }
       this.bsConfig = {
         dateInputFormat: 'YYYY-MM-DD',
         containerClass: 'theme-red'
       },
-      this.route.data.subscribe(data => {
-        this.employee = data['employee'];
-      });
-
-
       this.fillDesignations();
       // this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
     }
@@ -57,13 +63,67 @@ export class EmployeeEditComponent implements OnInit {
       
     }
 
+    resetEmployee(){
+      this.employee = {
+        id: null,
+        firstName: '',
+        lastName: '',
+        emailId: '',
+        age: null,
+        dateOfBirth: null,
+        gender: 'Male',
+        designationId: null,
+        designationName: '',
+        isActive: null,
+        created: new Date(),
+        lastActive: new Date()
+      };
+    }
+
     cancel(){
       this.router.navigate(['/employees']);
+    }
+
+    save(){
+      if (this.employee.id == null)
+      {
+        this.addEmployee();
+      }
+      else
+      {
+        this.updateEmployee();
+      }
     }
   
     updateEmployee() {
       this.employeeService.updateEmployee(this.employee.id, this.employee).subscribe(next => {
         this.alertify.success('Employee updated successfully');
+        this.editForm.reset(this.employee);
+        this.router.navigate(['/employees']);
+      }, error => {
+        console.log(error);
+        this.alertify.error(error);
+
+      });
+    }
+
+    addEmployee() {
+      this.employeeService.addEmployee(this.employee).subscribe(next => {
+        this.alertify.success('Employee added successfully');
+        this.editForm.reset(this.employee);
+        this.router.navigate(['/employees']);
+      }, error => {
+        console.log(error);
+        this.alertify.error(error);
+      });
+    }
+
+    deleteEmployee() {
+      if (!confirm('Are you sure you want to delete?'))
+        return;
+        
+      this.employeeService.deleteEmployee(this.employee.id).subscribe(next => {
+        this.alertify.success('Employee deleted successfully');
         this.editForm.reset(this.employee);
         this.router.navigate(['/employees']);
       }, error => {

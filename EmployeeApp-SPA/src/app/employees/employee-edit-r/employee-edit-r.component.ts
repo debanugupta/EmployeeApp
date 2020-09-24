@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Designation } from 'src/app/_models/designation';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { DesignationService } from 'src/app/_services/designation.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-employee-edit-r',
@@ -13,25 +15,111 @@ import { DesignationService } from 'src/app/_services/designation.service';
   styleUrls: ['./employee-edit-r.component.css']
 })
 export class EmployeeEditRComponent implements OnInit {
-  employeeForm: FormGroup;
+  editForm: FormGroup;
   employee: Employee;
   designations: Observable<Designation[]>;
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.editForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private employeeService: EmployeeService,
-    private designationService: DesignationService
+              private router: Router,
+              private employeeService: EmployeeService,
+              private designationService: DesignationService,
+              private alertify: AlertifyService
     ) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.employee = data['employee'];
-    });
+    let employeeID = this.route.snapshot.paramMap.get('id');
+    if (employeeID == null)
+      {
+        this.resetEmployee();
+      }
+      else
+      {
+        this.route.data.subscribe(data => {
+          this.employee = data['employee'];
+          this.initForm();
+        });
+      }
     this.fillDesignations();
-    this.initForm();
+  }
+
+  fillDesignations(){
+    this.designations = this.designationService.getDesignations();
+    
+  }
+
+  resetEmployee(){
+    this.editForm = new FormGroup({
+      firstName : new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      emailId: new FormControl('', Validators.required),
+      gender: new FormControl('Male', Validators.required),
+      dateOfBirth: new FormControl('', Validators.required),
+      isActive: new FormControl(this.employee.isActive, Validators.required),
+      designationId: new FormControl(this.employee.designationId, Validators.required),
+      created: new FormControl(new Date()),
+      lastActive: new FormControl(new Date()),
+    });
+  }
+  Cancel() {
+    this.router.navigate(['/employees']);  
+  }
+
+  save(){
+    if (this.employee.id == null)
+    {
+      this.addEmployee();
+    }
+    else
+    {
+      this.updateEmployee();
+    }
+  }
+
+  updateEmployee() {
+    this.employeeService.updateEmployee(this.employee.id, this.editForm.value).subscribe(next => {
+      this.alertify.success('Employee updated successfully');
+      this.editForm.reset(this.employee);
+      this.router.navigate(['/employees']);
+    }, error => {
+      console.log(error);
+      this.alertify.error(error);
+    });
+  }
+
+  addEmployee() {
+    this.employeeService.addEmployee(this.editForm.value).subscribe(next => {
+      this.alertify.success('Employee added successfully');
+      this.editForm.reset(this.employee);
+      this.router.navigate(['/employees']);
+    }, error => {
+      console.log(error);
+      this.alertify.error(error);
+    });
+  }
+
+  deleteEmployee() {
+    if (!confirm('Are you sure you want to delete?'))
+      return;
+      
+    this.employeeService.deleteEmployee(this.employee.id).subscribe(next => {
+      this.alertify.success('Employee deleted successfully');
+      this.editForm.reset(this.employee);
+      this.router.navigate(['/employees']);
+    }, error => {
+      console.log(error);
+      this.alertify.error(error);
+
+    });
   }
 
     private initForm() {
-      this.employeeForm = new FormGroup({
+      this.editForm = new FormGroup({
         firstName : new FormControl(this.employee.firstName, Validators.required),
         lastName: new FormControl(this.employee.lastName, Validators.required),
         emailId: new FormControl(this.employee.emailId, Validators.required),
@@ -42,23 +130,6 @@ export class EmployeeEditRComponent implements OnInit {
       });
     }
 
-    fillDesignations(){
-      this.designations = this.designationService.getDesignations();
-      
-    }
-
-    onSubmit() {
-
-      // if (this.editMode) {
-      //   this.recipeService.updateRecipe(this.id, this.recipeForm.value)
-      // } else {
-      //   this.recipeService.addRecipe(this.recipeForm.value);
-      // }
-      // this.onCancel();
-    }
-
-    onCancel() {
-      
-    }
+   
   }
 

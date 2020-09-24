@@ -1,12 +1,12 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="row">
     <div class="col-md-6">
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="editForm" (ngSubmit)="save()">
             
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 form-group">
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName">First Name *</label>
                         <input type="text" id="firstName" formControlName="firstName" class="form-control">
                     </div>
                 </div>
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName">Last Name *</label>
                         <input type="text" id="lastName" formControlName="lastName" class="form-control" #lastName>
                     </div>
                 </div>
@@ -22,8 +22,8 @@
             <div class="row">
               <div class="col-md-6">
                   <div class="form-group">
-                      <label for="lastName">Last Name</label>
-                      <input type="text" id="lastName" formControlName="lastName" class="form-control" #lastName>
+                      <label for="emailId">Email Id *</label>
+                      <input type="text" id="emailId" formControlName="emailId" class="form-control" #emailId>
                   </div>
               </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="designation">Designation</label>
+                  <label for="designation">Designation *</label>
                   <select id="designation"  formControlName="designationId" class="form-control" #designation>
                     <option value="0">-Select-</option>
                     <option *ngFor="let designation of designations | async" value="{{designation.id}}">{{designation.designationName}}</option>
@@ -55,8 +55,10 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
+                  <label for="dateOfBirth">Date of Birth *</label>
                   <mat-form-field>
-                    <mat-label>Date of Birth</mat-label>
+                    <mat-label></mat-label>
+                   
                     <input  formControlName="dateOfBirth" class="form-control" name="dateOfBirth" 
                     matInput [matDatepicker]="dateOfBirth"  placeholder="Date of birth" >
                     <mat-datepicker-toggle  matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
@@ -77,8 +79,8 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <button type="submit" class="btn btn-success" style="margin-right: 10px;"
-                      [disabled]="!employeeForm.valid">Save</button>
-                  <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                      [disabled]="!editForm.dirty || !editForm.valid ">Save</button>
+                  <button type="button" class="btn btn-danger" (click)="Cancel()">Cancel</button>
                 </div>
               </div>
           </div>
