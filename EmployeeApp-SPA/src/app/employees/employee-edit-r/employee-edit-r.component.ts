@@ -18,6 +18,7 @@ export class EmployeeEditRComponent implements OnInit {
   editForm: FormGroup;
   employee: Employee;
   designations: Observable<Designation[]>;
+  employeeId: string;
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -33,8 +34,8 @@ export class EmployeeEditRComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    let employeeID = this.route.snapshot.paramMap.get('id');
-    if (employeeID == null)
+    this.employeeId = this.route.snapshot.paramMap.get('id');
+    if (this.employeeId == null)
       {
         this.resetEmployee();
       }
@@ -50,7 +51,6 @@ export class EmployeeEditRComponent implements OnInit {
 
   fillDesignations(){
     this.designations = this.designationService.getDesignations();
-    
   }
 
   resetEmployee(){
@@ -60,18 +60,19 @@ export class EmployeeEditRComponent implements OnInit {
       emailId: new FormControl('', Validators.required),
       gender: new FormControl('Male', Validators.required),
       dateOfBirth: new FormControl('', Validators.required),
-      isActive: new FormControl(this.employee.isActive, Validators.required),
-      designationId: new FormControl(this.employee.designationId, Validators.required),
+      isActive: new FormControl(false, Validators.required),
+      designationId: new FormControl('', Validators.required),
       created: new FormControl(new Date()),
       lastActive: new FormControl(new Date()),
     });
   }
-  Cancel() {
+  cancel() {
     this.router.navigate(['/employees']);  
   }
 
   save(){
-    if (this.employee.id == null)
+    // let employeeId = this.route.snapshot.paramMap.get('id');
+    if (this.employeeId == null)
     {
       this.addEmployee();
     }
@@ -129,7 +130,5 @@ export class EmployeeEditRComponent implements OnInit {
         designationId: new FormControl(this.employee.designationId, Validators.required)
       });
     }
-
-   
   }
 
