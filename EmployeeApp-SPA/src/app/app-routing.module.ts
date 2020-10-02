@@ -21,12 +21,12 @@ export const appRoutes: Routes = [
         children: [
             { path: 'employees', component: EmployeeListComponent,
                 resolve: {employees: EmployeeListResolver}},
-            { path: 'employees/add', component: EmployeeEditRComponent
+            { path: 'employees/add', component: EmployeeEditComponent
             , canDeactivate: [PreventUnsavedChanges]
             },
             { path: 'employees/:id', component: EmployeeDetailComponent,
                 resolve: {employee: EmployeeDetailResolver}},
-            { path: 'employees/edit/:id', component: EmployeeEditRComponent,
+            { path: 'employees/edit/:id', component: EmployeeEditComponent,
                 resolve: {employee: EmployeeEditResolver}
                 , canDeactivate: [PreventUnsavedChanges]
             },
