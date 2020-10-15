@@ -21,12 +21,12 @@ export class EmployeeListComponent implements OnInit {
 
 
   constructor(private employeeService: EmployeeService, private alertify: AlertifyService,
-    private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute, private router: Router) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
       this.route.data.subscribe(data => {
-        this.employees = data['employees'].result;
-        this.pagination = data['employees'].pagination;
+        this.employees = data.employees.result;
+        this.pagination = data.employees.pagination;
       });
       // this.employeeParams.gender = this.empl === 'female' ? 'male' : 'female';
       this.employeeParams.minAge = 18;
@@ -34,16 +34,16 @@ export class EmployeeListComponent implements OnInit {
       this.employeeParams.orderBy = 'lastActive';
     }
 
-    populateForm(employee: Employee) {
+    populateForm(employee: Employee): void {
       this.router.navigate(['/employees/' + employee.id]);
     }
 
-    addEmployee()
+    addEmployee(): void
     {
       this.router.navigate(['/employees/add']);
     }
 
-    openForEdit(employee: Employee ) {
+    openForEdit(employee: Employee ): void {
       this.router.navigate(['/employees/edit/' + employee.id]);
     }
 
@@ -52,14 +52,14 @@ export class EmployeeListComponent implements OnInit {
       this.loadEmployees();
     }
 
-    resetFilters() {
+    resetFilters(): void {
       // this.employeeParams.gender = this.user.gender === 'female' ? 'male' : 'female';
       this.employeeParams.minAge = 18;
       this.employeeParams.maxAge = 99;
       this.loadEmployees();
     }
 
-    loadEmployees() {
+    loadEmployees(): void {
       this.employeeService
       .getEmployees(
         this.pagination.currentPage, this.pagination.itemsPerPage, this.employeeParams

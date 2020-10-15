@@ -48,16 +48,16 @@ export class EmployeeService {
     return this.http.get<Employee>(this.baseUrl + 'employees/' + id);
   }
 
-  updateEmployee(id: number, emplyee: Employee) {
+  updateEmployee(id: number, emplyee: Employee): Observable<any> {
     return this.http.put(this.baseUrl + 'employees/' + id, emplyee);
   }
 
-  addEmployee(emplyee: Employee){
+  addEmployee(emplyee: Employee): Observable<any>{
     return this.http.post(this.baseUrl + 'employees', emplyee);
   }
 
 
-  deleteEmployee(id: number) {
+  deleteEmployee(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + 'employees/' + id );
   }
 }

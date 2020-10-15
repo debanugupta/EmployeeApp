@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace EmployeeApp.API.Models
 {
-    public class Designation
+    public class Salary
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "varchar(50)")]
-        public string DesignationName { get; set; }
-        public Salary Salary { get; set; }
+        public int TotalSalary { get; set; }
+        [Required]
+        public int DesignationId { get; set; }
+
     }
 }

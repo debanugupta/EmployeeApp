@@ -12,18 +12,17 @@ export class DesignationService {
   baseUrl = environment.apiUrl;
   designations: Designation[] = [];
 
-  
+
   constructor(private http: HttpClient) { }
 
-  getDesignations() {
-    // return this.http.get(this.baseUrl + 'designations');
-    if (this.designations.length > 0) return of(this.designations);
+  getDesignations(): Observable<Designation[]> {
+    if (this.designations.length > 0) { return of(this.designations); }
     return this.http.get<Designation[]>(this.baseUrl + 'designations').pipe(
       map(designations => {
         this.designations = designations;
         return designations;
       })
-    )
+    );
   }
 
 }

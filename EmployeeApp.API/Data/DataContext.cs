@@ -13,6 +13,7 @@ namespace EmployeeApp.API.Data
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Designation> Designations { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
 
     }
 }
